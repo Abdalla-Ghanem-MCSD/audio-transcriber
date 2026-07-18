@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+# large speech model — download with scripts/download_model.py (see README)
+models/
+# user uploads / audio
+static/audio/
+*.mp3
+*.mp4
+*.wav
+*.m4a
+*.webm
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

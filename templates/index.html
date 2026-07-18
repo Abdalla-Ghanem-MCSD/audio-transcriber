@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transcriber</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">🎙</div>
+        <h1>Transcriber</h1>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="upload">📁 Upload</button>
+        <button class="tab-btn" data-tab="live">🔴 Live</button>
+      </div>
+    </header>
+
+    <!-- Upload Tab -->
+    <div class="tab-panel active" id="tab-upload">
+      <div class="card drop-zone" id="dropZone">
+        <input type="file" id="fileInput" accept="audio/*" hidden />
+        <div class="drop-icon">🎵</div>
+        <p class="drop-text">Drop your audio file here</p>
+        <p class="drop-sub">or <span class="link" id="browseBtn">browse files</span></p>
+        <p class="drop-formats">MP3 · WAV · AAC · M4A</p>
+      </div>
+
+      <!-- Processing Panel -->
+      <div class="proc-panel hidden" id="procPanel">
+        <div class="proc-header">
+          <span class="proc-model-tag">WHISPER large-v2</span>
+          <div class="proc-dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="proc-steps" id="procSteps"></div>
+        <div class="proc-progress">
+          <div class="proc-fill" id="procFill"></div>
+        </div>
+        <div class="proc-wave" id="procWave"></div>
+        <div class="proc-footer">model: faster-whisper large-v2 &nbsp;|&nbsp; compute: int8 &nbsp;|&nbsp; device: CPU</div>
+      </div>
+
+      <!-- Result -->
+      <div class="card player-card hidden" id="playerCard">
+        <audio id="audioPlayer" controls></audio>
+        <div class="transcript-toolbar">
+          <button class="correct-btn" id="correctBtn">✦ تصحيح</button>
+        </div>
+        <div class="transcript-box" id="transcript" dir="auto"></div>
+      </div>
+    </div>
+
+    <!-- Live Tab -->
+    <div class="tab-panel" id="tab-live">
+      <div class="card record-card">
+        <button class="record-btn" id="recordBtn">
+          <div class="ring ring1"></div>
+          <div class="ring ring2"></div>
+          <div class="ring ring3"></div>
+          <span class="mic">🎙</span>
+        </button>
+        <p class="record-label" id="recordLabel">Tap to Record</p>
+        <div class="waveform" id="waveform"></div>
+      </div>
+      <div class="card">
+        <div class="transcript-box scrollable" id="liveTranscript">
+          <p class="placeholder" dir="auto">Your transcription will appear here…</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
